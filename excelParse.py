@@ -116,11 +116,14 @@ class ExcelParser :
         write_sheet = self.write_book.get_sheet(self.current_sheet_name)
         write_sheet._cell_overwrite_ok = True 
         write_sheet.write(row, column, value)
+    def get_sheet_name(self):
+        fl = xlrd.open_workbook(self.file_path)
+        return fl.sheet_names()
         
 if __name__ == "__main__":
-    filename = "做市商借款测试计划_v1.0_20191230.xlsx"
+    filename = "点亮计划.xlsx"
     exparse=ExcelParser(filename)
-    testcase_list=exparse.get_one_colum_content(0,"测试用例")
-    print(testcase_list)
+    # testcase_list=exparse.get_one_colum_content(0,"测试用例")
+    print(exparse.get_sheet_name())
 
     

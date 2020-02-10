@@ -6,7 +6,7 @@ import sys
 
 from excelParse import ExcelParser
 class operate():
-    def __init__(self, ExcelFileName, SheetName):
+    def __init__(self, ExcelFileName,SheetName):
         self.excelFile = ExcelFileName
         self.SheetName = SheetName
         self.temp = ExcelParser(self.excelFile)
@@ -16,10 +16,10 @@ class operate():
         self.dic_testlink[self.testsuite] = {"node_order": "13", "details": "", "testcase": []}
         self.content = ""
         self.content_list = []
-        
-    def excel2dic(self):
+    def excel2dic(self,SheetName):
+        # excel数据转换为字典
         # 获取首行表名称
-        column_name_list=self.temp.get_one_row_content(0,self.SheetName)
+        column_name_list=self.temp.get_one_row_content(0,SheetName)
         custom_list_all=column_name_list.copy()
         custom_list=[]
         for custom_filed in custom_list_all:
@@ -28,7 +28,7 @@ class operate():
                 custom_list.append(custom_filed)
 
         colum_index=column_name_list.index("name")
-        testcase_list=self.temp.get_one_colum_content(colum_index, self.SheetName)
+        testcase_list=self.temp.get_one_colum_content(colum_index, SheetName)
         #print testcase_list
         #获取每个testcase的行号，从而得出step步骤N行  testcase_row_num_list 用例的行号
         testcase_row_num_list=[]
@@ -37,26 +37,26 @@ class operate():
                 testcase_row_num_list.append(i)
         
         #print testcase_row_num_list
-        steps_rows=self.temp.get_one_colum_content(4, self.SheetName)
+        steps_rows=self.temp.get_one_colum_content(4, SheetName)
         rows_sum=len(steps_rows)
         #获取每个case各个属性值组成每个testcase的map
         for row_num in testcase_row_num_list:
             testcase = {"name": "", "node_order": "100", "version": "1", "summary": "",
                         "preconditions": "", "execution_type": "1", "importance": "", "steps": [], "keywords": "",
                         "custom_fields":[]}
-            case_name=self.temp.get_one_cell_content(row_num,"name",self.SheetName)
-            summary=self.temp.get_one_cell_content(row_num,"summary",self.SheetName)
-            preconditions=self.temp.get_one_cell_content(row_num,"preconditions",self.SheetName)
-            importance=self.temp.get_one_cell_content(row_num,"importance",self.SheetName)
-            keywords=self.temp.get_one_cell_content(row_num,"keywords",self.SheetName)
-            execution_type=self.temp.get_one_cell_content(row_num,"execution_type",self.SheetName)
+            case_name=self.temp.get_one_cell_content(row_num,"name",SheetName)
+            summary=self.temp.get_one_cell_content(row_num,"summary",SheetName)
+            preconditions=self.temp.get_one_cell_content(row_num,"preconditions",SheetName)
+            importance=self.temp.get_one_cell_content(row_num,"importance",SheetName)
+            keywords=self.temp.get_one_cell_content(row_num,"keywords",SheetName)
+            execution_type=self.temp.get_one_cell_content(row_num,"execution_type",SheetName)
             # 自定义字段添加
             for custom_filed in custom_list:
                 # print(custom_filed)
-                tmp=self.temp.get_one_cell_content(row_num,custom_filed,self.SheetName)
+                tmp=self.temp.get_one_cell_content(row_num,custom_filed,SheetName)
                 testcase["custom_fields"].append({custom_filed:tmp})
 
-            # reverse=self.temp.get_one_cell_content(row_num,"reverse",self.SheetName)
+            # reverse=self.temp.get_one_cell_content(row_num,"reverse",SheetName)
             num_index=testcase_row_num_list.index(row_num)
             #print num_index
             #print len(testcase_row_num_list)
@@ -66,9 +66,9 @@ class operate():
                 step_num=1
                 for i in range(row_num, next_row_num):
                     step= {"step_number": "", "actions": "", "expectedresults": "", "execution_type": ""}
-                    action=self.temp.get_one_cell_content(i,"actions",self.SheetName)
-                    expect_result=self.temp.get_one_cell_content(i,"expected_result",self.SheetName)
-                    execution_type=self.temp.get_one_cell_content(i,"execution_type",self.SheetName)
+                    action=self.temp.get_one_cell_content(i,"actions",SheetName)
+                    expect_result=self.temp.get_one_cell_content(i,"expected_result",SheetName)
+                    execution_type=self.temp.get_one_cell_content(i,"execution_type",SheetName)
                     step["step_number"]=str(step_num)
                     step["actions"]=action
                     step["expectedresults"]=expect_result
@@ -79,9 +79,9 @@ class operate():
                 step_num=1
                 for i in range(row_num, rows_sum):
                     step= {"step_number": "", "actions": "", "expectedresults": "", "execution_type": ""}
-                    action=self.temp.get_one_cell_content(i,"actions",self.SheetName)
-                    expect_result=self.temp.get_one_cell_content(i,"expected_result",self.SheetName)
-                    execution_type=self.temp.get_one_cell_content(i,"execution_type",self.SheetName)
+                    action=self.temp.get_one_cell_content(i,"actions",SheetName)
+                    expect_result=self.temp.get_one_cell_content(i,"expected_result",SheetName)
+                    execution_type=self.temp.get_one_cell_content(i,"execution_type",SheetName)
                     step["step_number"]=str(step_num)
                     step["actions"]=action
                     step["expectedresults"]=expect_result
@@ -157,8 +157,8 @@ class operate():
             return '*ERROR*'
 
     def dic_to_xml(self):
-        # 将字典数据转换为xml格式数据
-        self.excel2dic()
+        # 将一个表的数据转换为xml数据
+        self.excel2dic(self.SheetName)
         testcase_list = self.dic_testlink[self.testsuite]["testcase"]
         for testcase in testcase_list:
             for step in testcase["steps"]:
@@ -186,15 +186,15 @@ class operate():
         self.content = "".join(self.content_list)
         self.content = '<testsuite name="' + self.testsuite + '">\n' + self.content + "</testsuite>"
         self.content = '<?xml version="1.0" encoding="UTF-8"?>\n' + self.content
-        self.write_to_file(self.excelFile, self.SheetName)
+        self.write_to_file(self.excelFile)
 
     # 输出xml文件
-    def write_to_file(self, ExcelFileName, SheetName):
-        xmlFileName = ExcelFileName + '_' + SheetName + '.xml'
+    def write_to_file(self, ExcelFileName):
+        xmlFileName = ExcelFileName.split('.')[0] + '_' + self.SheetName + '.xml'
         cp = open(xmlFileName, "w")
         cp.write(self.content)
         cp.close()
 
 if __name__ == "__main__":
-    op=operate(u"做市商借款测试计划_v1.0_20191230.xlsx", u"测试用例")
+    op=operate("点亮计划.xlsx","黑名单")
     op.dic_to_xml()    
