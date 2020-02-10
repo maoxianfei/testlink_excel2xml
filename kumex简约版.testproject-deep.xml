@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite id="" name="" >
+<node_order><![CDATA[]]></node_order>
+<details><![CDATA[]]></details> 
+<testsuite id="1313" name="QQ" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1315" name="1">
+	<node_order><![CDATA[1000]]></node_order>
+	<externalid><![CDATA[68]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+
+<custom_fields>
+			<custom_field>
+			<name><![CDATA[等级]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[用例名]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[预期结果]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[备注]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[执行人]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[操作结果]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[是否脚本]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[步骤]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[用例是否通过]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[第一轮]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[第二轮]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+		</custom_fields>
+</testcase>
+
+<testcase internalid="1317" name="下单测试用例1">
+	<node_order><![CDATA[1001]]></node_order>
+	<externalid><![CDATA[69]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>1</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+
+<custom_fields>
+			<custom_field>
+			<name><![CDATA[等级]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[用例名]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[预期结果]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[备注]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[执行人]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[操作结果]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[是否脚本]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[步骤]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[用例是否通过]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[第一轮]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[第二轮]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+		</custom_fields>
+</testcase>
+</testsuite><testsuite id="1314" name="AA" >
+<node_order><![CDATA[2]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1319" name="1">
+	<node_order><![CDATA[1000]]></node_order>
+	<externalid><![CDATA[70]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+
+<custom_fields>
+			<custom_field>
+			<name><![CDATA[等级]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[用例名]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[预期结果]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[备注]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[执行人]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[操作结果]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[是否脚本]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[步骤]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[用例是否通过]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[第一轮]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+			<custom_field>
+			<name><![CDATA[第二轮]]></name>
+			<value><![CDATA[]]></value>
+			</custom_field>
+		</custom_fields>
+</testcase>
+</testsuite></testsuite>
