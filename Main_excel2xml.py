@@ -16,5 +16,5 @@ def Control(file):
         op.dic_to_xml()
 if __name__ == '__main__':
     # 一个sheet表输出一个xml文件
-    file="发奖系统.xlsx"
+    file="fccc.xlsx"
     Control(file)

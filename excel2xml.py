@@ -105,6 +105,8 @@ class operate():
             self.dic_testlink[self.testsuite]["testcase"].append(testcase)
 
     def content_to_xml(self, key, value=None):
+        # 过滤特殊符号 > <
+
         if key == 'step_number' or  key == 'node_order' or key == 'version' :
             return "<" + str(key) + "><![CDATA[" + str(value) + "]]></" + str(key) + ">\n"
         # 自定义字段
@@ -152,7 +154,7 @@ class operate():
             else:
                 return '<keywords>\n<keyword name="' + str(value) + '">\n<notes><![CDATA[ keyowrd ]]></notes>\n</keyword>\n</keywords>\n'
         elif key == 'name':
-            return '<testcase name="' + str(value) + '">\n'
+            return '<testcase name="' + str(value).replace(">","大于").replace("<","小于") + '">\n'
         else:
             return '*ERROR*'
 
