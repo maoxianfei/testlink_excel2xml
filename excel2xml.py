@@ -104,7 +104,7 @@ class operate():
             testcase["execution_type"]=execution_type
             self.dic_testlink[self.testsuite]["testcase"].append(testcase)
 
-    def content_to_xml(self, key, value=None):
+    def content_to_xml(self, key='', value=None,row=''):
         # 过滤特殊符号 > <
 
         if key == 'step_number' or  key == 'node_order' or key == 'version' :
@@ -131,13 +131,14 @@ class operate():
             elif value=="中" :
                 convert_value = "2"
             else:
-                convert_value = "1"
+                print(f'Sheet:{self.SheetName} 用例：{row+1} 报错原因：缺少字段importance')
+                exit(0)
             # print(value,convert_value)
             return "<" + str(key) + "><![CDATA[" + str(convert_value) + "]]></" + str(key) + ">\n"
         elif key == 'actions' or key == 'expectedresults' or key == 'summary' or key == 'preconditions':
             # 多行需要换行问
             outvalue=""
-            p_list=value.split('\n')
+            p_list=str(value).split('\n')
             for single_p in p_list:
                 line=f"<p>{single_p}</p>"
                 outvalue=outvalue+line
@@ -160,28 +161,31 @@ class operate():
 
     def dic_to_xml(self):
         # 将一个表的数据转换为xml数据
+        # 读取excel数据转换为dict
         self.excel2dic(self.SheetName)
         testcase_list = self.dic_testlink[self.testsuite]["testcase"]
-        for testcase in testcase_list:
+        for index,testcase in enumerate(testcase_list):
+            # for step in testcase["steps"]:
             for step in testcase["steps"]:
+
                 self.content += "<step>\n"
-                self.content += self.content_to_xml("step_number", step["step_number"])
-                self.content += self.content_to_xml("actions", step["actions"])
-                self.content += self.content_to_xml("expectedresults", step["expectedresults"])
-                self.content += self.content_to_xml("execution_type", step["execution_type"])
+                self.content += self.content_to_xml("step_number", step["step_number"],row=index)
+                self.content += self.content_to_xml("actions", step["actions"],row=index)
+                self.content += self.content_to_xml("expectedresults", step["expectedresults"],row=index)
+                self.content += self.content_to_xml("execution_type", step["execution_type"],row=index)
                 self.content += "</step>\n"
             self.content = "<steps>\n" + self.content + "</steps>\n"
-            self.content = self.content_to_xml("importance", testcase["importance"]) + self.content
-            self.content = self.content_to_xml("execution_type", testcase["execution_type"]) + self.content
-            self.content = self.content_to_xml("preconditions", testcase["preconditions"]) + self.content
-            self.content = self.content_to_xml("summary", testcase["summary"]) + self.content
-            self.content = self.content_to_xml("version", testcase["version"]) + self.content
+            self.content = self.content_to_xml("importance", testcase["importance"],row=index) + self.content
+            self.content = self.content_to_xml("execution_type", testcase["execution_type"],row=index) + self.content
+            self.content = self.content_to_xml("preconditions", testcase["preconditions"],row=index) + self.content
+            self.content = self.content_to_xml("summary", testcase["summary"],row=index) + self.content
+            self.content = self.content_to_xml("version", testcase["version"],row=index) + self.content
             #self.content = self.content_to_xml("externalid", testcase["externalid"]) + self.content
-            self.content = self.content_to_xml("node_order", testcase["node_order"]) + self.content
-            self.content = self.content + self.content_to_xml("keywords", testcase["keywords"])
+            self.content = self.content_to_xml("node_order", testcase["node_order"],row=index) + self.content
+            self.content = self.content + self.content_to_xml("keywords", testcase["keywords"],row=index)
             # 自定义字段添加
-            self.content = self.content+self.content_to_xml("custom_fields",testcase["custom_fields"])
-            self.content = self.content_to_xml("name", testcase["name"]) + self.content
+            self.content = self.content+self.content_to_xml("custom_fields",testcase["custom_fields"],row=index)
+            self.content = self.content_to_xml("name", testcase["name"],row=index) + self.content
             self.content = self.content + "</testcase>\n"
             self.content_list.append(self.content)
             self.content = ""
